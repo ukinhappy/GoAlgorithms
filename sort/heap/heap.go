@@ -34,18 +34,26 @@ func adjust(arr []int, adjustIndex int, nLength int) {
 			// 右节点大于左节点
 			if arr[2*adjustIndex+2] > arr[2*adjustIndex+1] {
 				// 右节点与父节点交换
-				arr[adjustIndex] = arr[adjustIndex] ^ arr[2*adjustIndex+2]
-				arr[2*adjustIndex+2] = arr[adjustIndex] ^ arr[2*adjustIndex+2]
-				arr[adjustIndex] = arr[adjustIndex] ^ arr[2*adjustIndex+2]
-				// 调整右节点为待调整的树
-				adjustIndex = 2*adjustIndex + 2
+				if arr[2*adjustIndex+2] > arr[adjustIndex] {
+					arr[adjustIndex] = arr[adjustIndex] ^ arr[2*adjustIndex+2]
+					arr[2*adjustIndex+2] = arr[adjustIndex] ^ arr[2*adjustIndex+2]
+					arr[adjustIndex] = arr[adjustIndex] ^ arr[2*adjustIndex+2]
+					// 调整右节点为待调整的树
+					adjustIndex = 2*adjustIndex + 2
+				} else {
+					break
+				}
 			} else {
-				// 左节点与父节点交换
-				arr[adjustIndex] = arr[adjustIndex] ^ arr[2*adjustIndex+1]
-				arr[2*adjustIndex+1] = arr[adjustIndex] ^ arr[2*adjustIndex+1]
-				arr[adjustIndex] = arr[adjustIndex] ^ arr[2*adjustIndex+1]
-				// 调整左节点为待调整的树
-				adjustIndex = 2*adjustIndex + 1
+				if arr[2*adjustIndex+1] > arr[adjustIndex] {
+					// 左节点与父节点交换
+					arr[adjustIndex] = arr[adjustIndex] ^ arr[2*adjustIndex+1]
+					arr[2*adjustIndex+1] = arr[adjustIndex] ^ arr[2*adjustIndex+1]
+					arr[adjustIndex] = arr[adjustIndex] ^ arr[2*adjustIndex+1]
+					// 调整左节点为待调整的树
+					adjustIndex = 2*adjustIndex + 1
+				} else {
+					break
+				}
 			}
 		} else if 2*adjustIndex+1 < nLength { //  当前节点有一个节点（左节点）
 			// 子节点大于父节点

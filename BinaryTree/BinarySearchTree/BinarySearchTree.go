@@ -118,6 +118,29 @@ func (bst *BST) DeleteNode(num int) {
 	}
 }
 
+type List struct {
+	Pstart *Tree
+	Pend   *Tree
+}
+
+// 排序二叉树转变成双向链表
+func (list *List) TreeToList(tree *Tree) {
+	if tree == nil {
+		return
+	}
+
+	list.TreeToList(tree.Pleft)
+
+	if list.Pstart == nil {
+		list.Pstart = tree
+	} else {
+		list.Pend.Pright = tree
+		tree.Pleft = list.Pend
+	}
+	list.Pend = tree
+	list.TreeToList(tree.Pright)
+}
+
 // 中序遍历
 func Print(tree *Tree) {
 	if tree == nil {
@@ -133,7 +156,14 @@ func main() {
 	var bst BST
 	bst.CreateBinarySearchTree(arr)
 	Print(bst.tree)
-	fmt.Println("删除节点")
+	fmt.Println("--------------删除节点------------------")
 	bst.DeleteNode(5)
 	Print(bst.tree)
+	fmt.Println("--------------树变链表------------------")
+	var list List
+	list.TreeToList(bst.tree)
+	for list.Pstart != nil {
+		fmt.Println(list.Pstart.Value)
+		list.Pstart = list.Pstart.Pright
+	}
 }

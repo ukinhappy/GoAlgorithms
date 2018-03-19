@@ -1,4 +1,4 @@
-# [GoAlgorithms](https://github.com/ukinhappy/GoAlgorithms/tree/master/BinaryTree/BinarySearchTree)
+# [GoAlgorithms](https://github.com/ukinhappy/GoAlgorithms)
 algorithms solution by golang
     
 文件 | 内容

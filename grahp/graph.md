@@ -17,6 +17,6 @@
 
   [2]: https://github.com/ukinhappy/GoAlgorithms/blob/master/graph/MatrixUndirectedGraph.go
 
-  [2]: https://github.com/ukinhappy/GoAlgorithms/blob/master/graph/MatrixDirectedGraph.go
+  [3]: https://github.com/ukinhappy/GoAlgorithms/blob/master/grahp/MatrixDirectedGraph.go
 
 

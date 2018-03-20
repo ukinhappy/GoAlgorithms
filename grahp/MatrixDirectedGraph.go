@@ -1,5 +1,5 @@
 /*
-邻接矩阵无向图Graph( Matrix Undirected Graph)：采用数组的方式存储
+邻接矩阵有向图Graph( Matrix Directed Graph)：采用数组的方式存储
 为了方便处理，我们假设最大有a-z 26个顶点
 使用我们提供的数据建图
 
@@ -7,7 +7,7 @@ DFS 深度优先便利
 BFS 广度优先遍历
 DFSByStack 通过栈 深度便利
 
-对于有向图，在创建时，只需要注释掉一行。
+相对于无向图的DFS，在无向图的基础上，将未遍历到的基础上，继续将未遍历到的点进行遍历。BFS同DFS
 */
 
 package main
@@ -57,8 +57,7 @@ func createGrahp(vexs []rune, edges [][2]rune) *Graph {
 		x := edges[i][0] - 'A'
 		y := edges[i][1] - 'A'
 		graph.Matrix[x][y] = 1
-		// 注释掉这一行，就变成有向图
-		graph.Matrix[y][x] = 1
+		//  graph.Matrix[y][x] = 1
 	}
 	return graph
 }
@@ -67,9 +66,24 @@ func BFS(graph *Graph) {
 	if graph == nil {
 		return
 	}
-	queue := queue.New()
+
 	flage := make(map[int]bool, graph.nVertex)
-	queue.Push(0)
+	for i := 0; i < graph.nVertex; i++ {
+		flage[i] = false
+	}
+	// 设定A为开始点，也可以不设定
+	bfs(graph, flage, 0)
+	for flageindex, f := range flage {
+		if !f {
+			bfs(graph, flage, flageindex)
+		}
+
+	}
+}
+
+func bfs(graph *Graph, flage map[int]bool, flageindex int) {
+	queue := queue.New()
+	queue.Push(flageindex)
 	for !queue.Empty() {
 		index := queue.Pop().(int)
 		if !flage[index] {
@@ -89,14 +103,24 @@ func DFS(graph *Graph) {
 		return
 	}
 	flage := make(map[int]bool, graph.nVertex)
+	for i := 0; i < graph.nVertex; i++ {
+		flage[i] = false
+	}
+	// 设定A为开始点，也可以不设定
 	dfs(graph, 0, flage)
 
+	for flageindex, f := range flage {
+		if !f {
+			dfs(graph, flageindex, flage)
+		}
+	}
 }
 
 func dfs(graph *Graph, num int, flage map[int]bool) {
 	if graph == nil {
 		return
 	}
+
 	if !flage[num] {
 		flage[num] = true
 		for k, v := range graph.Matrix[num] {
@@ -106,6 +130,7 @@ func dfs(graph *Graph, num int, flage map[int]bool) {
 		}
 		fmt.Printf("%c", 'A'+num)
 	}
+
 }
 
 func DFSByStack(graph *Graph) {

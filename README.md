@@ -1,5 +1,5 @@
 # [GoAlgorithms](https://github.com/ukinhappy/GoAlgorithms)
-algorithms solution by golang
+algorithms solution by golang -
     
 文件 | 内容
 ---|---

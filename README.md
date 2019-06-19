@@ -1,3 +1,4 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/ukinhappy/GoAlgorithms)](https://goreportcard.com/report/github.com/ukinhappy/GoAlgorithms)
 # [GoAlgorithms](https://github.com/ukinhappy/GoAlgorithms)
 algorithms solution by golang -
     
@@ -13,11 +14,11 @@ algorithms solution by golang -
 ## Sort
 
  - [bubble](./sort/bubble) 
- - [bucket](./sort/bucket) 
  - [count](./sort/count) 
- - [heap](./sort/heap) 
  - [insert](./sort/insert) 
  - [merge](./sort/merge)   
  - [quick](./sort/quick) 
- - [radix](./sort/radix)   
  - [shell](./sort/shell) 
+ - [bucket](./sort/bucket) 
+ - [heap](./sort/heap) 
+ - [radix](./sort/radix)   

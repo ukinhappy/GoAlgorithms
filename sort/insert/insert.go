@@ -1,21 +1,21 @@
+/*Package insert .....
+	稳定排序
+	时间复杂度:O(N2)
+ */
 package insert
 
-func Insert(arr []int, nLength int) {
-	if arr == nil || nLength < 0 {
-		return
-	}
-	var temp, j int
-	for i := 1; i < nLength; i++ {
-		// 记录已经排好序的最后一个元素的下标
-		j = i - 1
-		// 记住需要排序的第一个元素
-		temp = arr[i]
+//Insert 插入排序
+func Insert(arr []int) {
 
-		// 注意j >=0 在前面
-		for j >= 0 && arr[j] > temp {
-			arr[j+1] = arr[j]
-			j--
+	// 从第二个元素开始往前比较
+	for i := 1; i < len(arr); i++ {
+		lastID := i - 1
+		tmp := arr[i]
+		for lastID >= 0 && arr[lastID] > tmp {
+			arr[lastID+1] = arr[lastID]
+			lastID --
 		}
-		arr[j+1] = temp
+		arr[lastID+1] = tmp
 	}
+
 }

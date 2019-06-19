@@ -1,9 +1,8 @@
 package count
 
-func Count(arr []int, nLength int) {
-	if nil == arr || nLength <= 0 {
-		return
-	}
+// Count 计数排序
+func Count(arr []int) {
+	nLength := len(arr)
 	var max int = 0
 	for i := 0; i < nLength; i++ {
 		if arr[i] > max {

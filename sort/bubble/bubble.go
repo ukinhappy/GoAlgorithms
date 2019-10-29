@@ -21,19 +21,17 @@ func Bubble(arr []int) {
 //BubbleFlage bubble flag
 func BubbleFlage(arr []int) {
 	//
-	var changeFlag = len(arr) - 1
-	var index = changeFlag
-	for changeFlag > 0 {
-		changeFlag = 0
+	var flage = len(arr) - 1
+	var index = flage
+	for flage > 0 {
+		flage =0
 		for i := 0; i < index; i++ {
-			if arr[i] > arr[i+1] {
-				arr[i], arr[i+1] = arr[i+1], arr[i]
-				changeFlag = i
-
+			if arr[i+1] < arr[i] {
+				arr[i+1], arr[i] = arr[i], arr[i+1]
+				flage = i
 			}
 		}
-
-		index = changeFlag
 	}
+	index = flage
 
 }

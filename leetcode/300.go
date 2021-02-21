@@ -12,10 +12,6 @@ func lengthOfLIS(nums []int) int {
 		dp = append(dp, 1)
 	}
 	for i := 1; i < len(nums); i++ {
-		if nums[i] > nums[i-1] {
-			dp[i] = dp[i-1] + 1
-		}
-
 		for j := 0; j < i; j++ {
 			if nums[i] > nums[j] {
 				if dp[i] < dp[j]+1 {

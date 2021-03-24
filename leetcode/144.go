@@ -1,26 +1,52 @@
 package leetcode
 
+import list2 "container/list"
+
 /**
- * Definition for singly-linked list.
- * type ListNode struct {
+ * Definition for a binary tree node.
+ * type TreeNode struct {
  *     Val int
- *     Next *ListNode
+ *     Left *TreeNode
+ *     Right *TreeNode
  * }
  */
-func hasCycle(head *ListNode) bool {
-	if head == nil || head.Next == nil {
-		return false
+var result []int
+
+func preorderTraversal(root *TreeNode) []int {
+	result = make([]int, 0)
+	tran(root)
+	return result
+}
+
+func tran(root *TreeNode) {
+	if root == nil {
+		return
 	}
-	n1, n2 := head.Next, head.Next.Next
-	for {
-		if n1 == nil || n2 == nil || n2.Next == nil {
-			break
-		}
-		if n1 == n2 {
-			return true
-		}
-		n1 = n1.Next
-		n2 = n2.Next.Next
+
+	result = append(result, root.Val)
+	tran(root.Left)
+	tran(root.Right)
+}
+
+// 非递归实现
+func preorderTraversal(root *TreeNode) []int {
+	if root == nil {
+		return nil
 	}
-	return false
+	result = make([]int, 0)
+	list := list2.List{}
+
+	for root != nil || list.Len() > 0 {
+
+		if root != nil {
+			result = append(result, root.Val)
+			list.PushBack(root)
+			root = root.Left
+		} else {
+			back := list.Back()
+			list.Remove(back)
+			root = back.Value.(*TreeNode).Right
+		}
+	}
+	return result
 }

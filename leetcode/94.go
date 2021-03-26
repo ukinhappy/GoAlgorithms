@@ -17,7 +17,7 @@ func inorderTraversal(root *TreeNode) []int {
 
 }
 
-//非递归实现
+//广度优先遍历
 func inorderTraversal(root *TreeNode) []int {
 	if root == nil {
 		return nil
